@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: api-productos-alex
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: api-productos-db
+          property: connectionString
+
+databases:
+  - name: api-productos-db
+    plan: free
+    databaseName: api_productos
+    user: api_productos_user

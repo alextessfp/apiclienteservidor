@@ -1,0 +1,16 @@
+{
+  "name": "api-productos",
+  "version": "1.0.0",
+  "description": "API REST de productos con Node.js, Express y PostgreSQL",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "build": "node --check src/server.js && node --check src/app.js && node --check src/db.js"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": {
+    "express": "^5.1.0",
+    "pg": "^8.16.3"
+  }
+}
