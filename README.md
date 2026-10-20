@@ -9,10 +9,13 @@ API REST construida con Node.js, Express y PostgreSQL.
 
 ## Ejecutar localmente
 
-1. Copia `.env.example` a `.env` y configura `DATABASE_URL` con tu base PostgreSQL. El archivo `.env` se carga automáticamente.
-2. Instala dependencias: `npm install`
-3. Compila/verifica sintaxis: `npm run build`
-4. Inicia la API: `npm start` (o `npm run dev`)
+1. Inicia PostgreSQL local: `docker compose up -d`.
+2. Copia `.env.example` a `.env`. El archivo usa la base local y se carga automáticamente.
+3. Instala dependencias: `npm install`
+4. Compila/verifica sintaxis: `npm run build`
+5. Inicia la API: `npm start` (o `npm run dev`)
+
+La API local queda disponible en `http://localhost:3000`. Para apagar PostgreSQL usa `docker compose down`; los datos persisten en un volumen de Docker.
 
 Al iniciar, la API crea las tablas `products` y `maestros`. También agrega tres productos de ejemplo y los siete maestros solicitados; las inserciones de maestros son idempotentes.
 
