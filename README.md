@@ -14,7 +14,7 @@ API REST construida con Node.js, Express y PostgreSQL.
 3. Compila/verifica sintaxis: `npm run build`
 4. Inicia la API: `npm start` (o `npm run dev`)
 
-Al iniciar, la API crea la tabla `products` y agrega tres productos de ejemplo si está vacía.
+Al iniciar, la API crea las tablas `products` y `maestros`. También agrega tres productos de ejemplo y los siete maestros solicitados; las inserciones de maestros son idempotentes.
 
 ## Endpoints
 
@@ -24,6 +24,8 @@ Al iniciar, la API crea la tabla `products` y agrega tres productos de ejemplo s
 | GET | `/api/products` | Lista los productos |
 | GET | `/api/products/:id` | Recupera un producto por ID |
 | POST | `/api/products` | Crea un producto |
+| GET | `/api/maestros` | Lista los maestros |
+| GET | `/api/maestros/:id` | Recupera un maestro por ID |
 
 Ejemplo para crear un producto:
 

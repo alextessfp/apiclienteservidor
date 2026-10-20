@@ -9,6 +9,26 @@ const pool = new Pool({
 
 async function initializeDatabase() {
   await pool.query(`
+    CREATE TABLE IF NOT EXISTS maestros (
+      id BIGSERIAL PRIMARY KEY,
+      nombre VARCHAR(200) NOT NULL UNIQUE,
+      created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    )
+  `);
+
+  await pool.query(`
+    INSERT INTO maestros (nombre) VALUES
+      ('Alex Ramírez Galindo'),
+      ('Azucena Hernández Crisóstomo'),
+      ('Luis Ángel González Flores'),
+      ('Raúl Nava López'),
+      ('Ana Luisa Ramírez Noriega'),
+      ('Guillermina Reyes Juarez'),
+      ('José Luis García Morales')
+    ON CONFLICT (nombre) DO NOTHING
+  `);
+
+  await pool.query(`
     CREATE TABLE IF NOT EXISTS products (
       id BIGSERIAL PRIMARY KEY,
       name VARCHAR(160) NOT NULL,

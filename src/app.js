@@ -5,7 +5,7 @@ const app = express();
 app.use(express.json({ limit: '1mb' }));
 
 app.get('/', (_req, res) => {
-  res.json({ name: 'API de productos', version: '1.0.0', endpoints: ['/health', '/api/products', '/api/products/:id'] });
+  res.json({ name: 'API de productos y maestros', version: '1.1.0', endpoints: ['/health', '/api/products', '/api/products/:id', '/api/maestros', '/api/maestros/:id'] });
 });
 
 app.get('/health', async (_req, res) => {
@@ -44,6 +44,22 @@ app.post('/api/products', async (req, res, next) => {
       [name.trim(), description, Number(price), Number(stock), category]
     );
     res.status(201).json({ data: rows[0] });
+  } catch (error) { next(error); }
+});
+
+app.get('/api/maestros', async (_req, res, next) => {
+  try {
+    const { rows } = await pool.query('SELECT * FROM maestros ORDER BY id');
+    res.json({ data: rows, count: rows.length });
+  } catch (error) { next(error); }
+});
+
+app.get('/api/maestros/:id', async (req, res, next) => {
+  try {
+    if (!/^\d+$/.test(req.params.id)) return res.status(400).json({ error: 'El id debe ser un número entero positivo.' });
+    const { rows } = await pool.query('SELECT * FROM maestros WHERE id = $1', [req.params.id]);
+    if (!rows[0]) return res.status(404).json({ error: 'Maestro no encontrado.' });
+    res.json({ data: rows[0] });
   } catch (error) { next(error); }
 });
 
