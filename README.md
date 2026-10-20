@@ -9,7 +9,7 @@ API REST construida con Node.js, Express y PostgreSQL.
 
 ## Ejecutar localmente
 
-1. Copia `.env.example` a `.env` y configura `DATABASE_URL` con tu base PostgreSQL.
+1. Copia `.env.example` a `.env` y configura `DATABASE_URL` con tu base PostgreSQL. El archivo `.env` se carga automáticamente.
 2. Instala dependencias: `npm install`
 3. Compila/verifica sintaxis: `npm run build`
 4. Inicia la API: `npm start` (o `npm run dev`)

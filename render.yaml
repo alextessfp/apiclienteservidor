@@ -3,6 +3,7 @@ services:
     name: api-productos-alex
     runtime: node
     plan: free
+    region: oregon
     buildCommand: npm ci
     startCommand: npm start
     healthCheckPath: /health
@@ -17,5 +18,4 @@ services:
 databases:
   - name: api-productos-db
     plan: free
-    databaseName: api_productos
-    user: api_productos_user
+    region: oregon
